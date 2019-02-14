@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1542314299 source:d:\mydocuments\dropbox\university\fall_18\capstone\counter_test\main.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+
+1542582589 source:d:\mydocuments\dropbox\university\fall_18\capstone\code\poc\wireless_communication\rf_data_packetizer\main.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+
