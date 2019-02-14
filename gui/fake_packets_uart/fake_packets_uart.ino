@@ -8,16 +8,17 @@ int soil = 0;
 void node_write(int nodeid, int rssi, int nodestatus, float lat, float lng, int soil){
   Serial.write("NodeId:");
   Serial.println(nodeid, HEX);
-  Serial.write("RSSI:");
-  Serial.println(rssi);
-  Serial.write("Status:");
-  Serial.println(nodestatus, HEX);
+  Serial.write("SoilMoisture:");
+  Serial.println(soil);
+  //Serial.write("Status:");
+  //Serial.println(nodestatus, HEX);
   Serial.write("Latitude:");
   Serial.println(lat);
   Serial.write("Longitude:");
   Serial.println(lng);
-  Serial.write("SoilMoisture:");
-  Serial.println(soil);
+  Serial.write("RSSI:");
+  Serial.println(rssi);
+  
   delay(490);
 }
 
@@ -26,13 +27,13 @@ void node1(){
  rssi = random(-150, 0);  // rssi can be from noise floor to 0
  lat = -105.26; // DLC building
  lng = 40.01; // DLC building
- soil = random(0, 101); // percentage from 0 to 100
- if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
+ soil = random(0, 4096); // percentage from 0 to 4095
+ /*if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
   nodestatus = 0x01;
  }else{
   nodestatus = 0x00;
- }
- node_write(nodeid, rssi, nodestatus, lat, lng, soil);
+ }*/
+ node_write(nodeid, rssi, lat, lng, soil);
 }
 
 void node2(){
@@ -41,12 +42,12 @@ void node2(){
  lat = -105.26; // DLC building
  lng = 40.01; // DLC building
  soil = random(0, 101); // percentage from 0 to 100
- if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
+ /*if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
   nodestatus = 0x01;
  }else{
   nodestatus = 0x00;
- }
- node_write(nodeid, rssi, nodestatus, lat, lng, soil);
+ }*/
+ node_write(nodeid, rssi, lat, lng, soil);
 }
 
 void node3(){
@@ -55,12 +56,12 @@ void node3(){
  lat = -105.26; // DLC building
  lng = 40.01; // DLC building
  soil = random(0, 101); // percentage from 0 to 100
- if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
+ /*if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
   nodestatus = 0x01;
  }else{
   nodestatus = 0x00;
- }
- node_write(nodeid, rssi, nodestatus, lat, lng, soil);
+ }*/
+ node_write(nodeid, rssi, lat, lng, soil);
 }
 
 void node4(){
@@ -69,12 +70,12 @@ void node4(){
  lat = -105.26; // DLC building
  lng = 40.01; // DLC building
  soil = random(0, 101); // percentage from 0 to 100
- if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
+ /*if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
   nodestatus = 0x01;
  }else{
   nodestatus = 0x00;
- }
- node_write(nodeid, rssi, nodestatus, lat, lng, soil);
+ }*/
+ node_write(nodeid, rssi, lat, lng, soil);
 }
 
 void setup() {
