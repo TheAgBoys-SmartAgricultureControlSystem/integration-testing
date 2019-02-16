@@ -5,21 +5,40 @@ float lat = 0;
 float lng = 0;
 int soil = 0;
 
-void node_write(int nodeid, int rssi, int nodestatus, float lat, float lng, int soil){
+void node_write(int nodeid, int rssi, float lat, float lng, int soil){
+  //Serial.write("start_packet");
   Serial.write("NodeId:");
-  Serial.println(nodeid, HEX);
+  Serial.print(nodeid, HEX);
+  Serial.write("#");
   Serial.write("SoilMoisture:");
-  Serial.println(soil);
-  //Serial.write("Status:");
-  //Serial.println(nodestatus, HEX);
+  Serial.print(soil);
+  Serial.write("#");
   Serial.write("Latitude:");
-  Serial.println(lat);
+  Serial.print(lat);
+  Serial.write("#");
   Serial.write("Longitude:");
-  Serial.println(lng);
+  Serial.print(lng);
+  Serial.write("#");
   Serial.write("RSSI:");
-  Serial.println(rssi);
+  Serial.print(rssi);
+  //Serial.write("#");
+  Serial.println('\n');
   
   delay(490);
+}
+
+void node0(){
+ nodeid = 0x00; // node id
+ rssi = 0;//random(-150, 0);  // rssi can be from noise floor to 0
+ lat = -105.26; // DLC building
+ lng = 40.01; // DLC building
+ soil = random(0, 4096); // percentage from 0 to 4095
+ /*if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
+  nodestatus = 0x01;
+ }else{
+  nodestatus = 0x00;
+ }*/
+ node_write(nodeid, rssi, lat, lng, soil);
 }
 
 void node1(){
@@ -27,7 +46,7 @@ void node1(){
  rssi = random(-150, 0);  // rssi can be from noise floor to 0
  lat = -105.26; // DLC building
  lng = 40.01; // DLC building
- soil = random(0, 4096); // percentage from 0 to 4095
+ soil = 10;//random(0, 101); // percentage from 0 to 100
  /*if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
   nodestatus = 0x01;
  }else{
@@ -55,21 +74,7 @@ void node3(){
  rssi = random(-150, 0);  // rssi can be from noise floor to 0
  lat = -105.26; // DLC building
  lng = 40.01; // DLC building
- soil = random(0, 101); // percentage from 0 to 100
- /*if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
-  nodestatus = 0x01;
- }else{
-  nodestatus = 0x00;
- }*/
- node_write(nodeid, rssi, lat, lng, soil);
-}
-
-void node4(){
- nodeid = 0x04; // node id
- rssi = random(-150, 0);  // rssi can be from noise floor to 0
- lat = -105.26; // DLC building
- lng = 40.01; // DLC building
- soil = random(0, 101); // percentage from 0 to 100
+ soil = 30;//random(0, 101); // percentage from 0 to 100
  /*if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
   nodestatus = 0x01;
  }else{
@@ -88,10 +93,14 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  node0();
+  delay(5000);
   node1();
+  delay(5000);
   node2();
+  delay(5000);
   node3();
-  node4();
+  delay(5000);
 }
 
 
