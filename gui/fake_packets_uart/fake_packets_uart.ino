@@ -29,7 +29,7 @@ void node_write(int nodeid, int rssi, float lat, float lng, int soil){
 
 void node0(){
  nodeid = 0x00; // node id
- rssi = 0;//random(-150, 0);  // rssi can be from noise floor to 0
+ rssi = random(-150, 0);  // rssi can be from noise floor to 0
  lat = -105.26; // DLC building
  lng = 40.01; // DLC building
  soil = random(0, 4096); // percentage from 0 to 4095
@@ -46,7 +46,7 @@ void node1(){
  rssi = random(-150, 0);  // rssi can be from noise floor to 0
  lat = -105.26; // DLC building
  lng = 40.01; // DLC building
- soil = 10;//random(0, 101); // percentage from 0 to 100
+ soil = random(0, 101); // percentage from 0 to 100
  /*if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
   nodestatus = 0x01;
  }else{
@@ -74,7 +74,7 @@ void node3(){
  rssi = random(-150, 0);  // rssi can be from noise floor to 0
  lat = -105.26; // DLC building
  lng = 40.01; // DLC building
- soil = 30;//random(0, 101); // percentage from 0 to 100
+ soil = random(0, 101); // percentage from 0 to 100
  /*if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
   nodestatus = 0x01;
  }else{
