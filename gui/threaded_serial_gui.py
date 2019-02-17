@@ -5,9 +5,7 @@ import datetime
 import collections
 import io
 from tkinter import *
-
-
-
+from tkinter import ttk
 
 
 class Nodes:
@@ -21,21 +19,9 @@ class Nodes:
 
 class Window(Frame):
 	def __init__(self, master=None):
-
 		super(Window, self).__init__()
 		Frame.__init__(self, master)
-		Grid.config(self)
 
-		# control frame:
-		self.control = LabelFrame(master, width=640, height=240, text="Control")
-		self.control.grid(row=0, column=0, rowspan=1)
-		self.control.grid_propagate(True)
-		# testing frame:
-		self.testing = LabelFrame(master, width=640, height=240, text="Test")
-		self.testing.grid(row=1, column=0)
-		self.testing.grid_propagate(True)
-
-		# initialise serial communication
 		try:
 			self.serial_port = serial.Serial(
 				port='COM7',
@@ -45,22 +31,42 @@ class Window(Frame):
 				bytesize=8,
 				timeout=8
 			)
+			print("Connection Made")
 		except serial.SerialException:
 			print("Error connecting")
 			exit()
 
+		# control frame:
+		self.control = LabelFrame(master, width=640, height=120, text="Status")
+		self.control.pack()
+		# testing frame:
+		self.testing = LabelFrame(master, width=640, height=240, text="Test")
+		self.testing.pack()
+		self.notebook = ttk.Notebook(self.testing)
+
 		thread = threading.Thread(target=self.read_from_port, args=())
 		thread.start()
-		print("Connection Made")
 		self.init_window()
 
 	def init_window(self):
+		self.frame1 = ttk.Frame(self.notebook)
+		self.notebook.add(self.frame1, text='Frame1')
+		label = ttk.Label(self.frame1, text='Inside Frame 1')
+		label.grid(column=1, row=1)
+
+		self.frame2 = ttk.Frame(self.notebook)
+		self.notebook.add(self.frame2, text='Frame2')
+		label = ttk.Label(self.frame2, text='Inside Frame 2')
+		label.grid(column=1, row=1)
+
 		self.pos_lbl = Label(self.control, text="")
 		self.pos_lbl.grid(column=3, row=1)
 		self.checkPos = Label(self.control, text="Current Position")
 		self.checkPos.grid(column=3, row=0)
-		self.nextButton = Button(self.testing, text="Next", command=self.set_modules)
+		self.nextButton = Button(self.frame1, text="Next", command=self.set_modules)
 		self.nextButton.grid(column=2, row=4)
+		self.notebook.pack()
+		pass
 
 	def read_from_port(self):
 		while True:
@@ -90,6 +96,7 @@ class Window(Frame):
 
 	def set_modules(self):
 		self.pos_lbl.configure(text=Nodes.node1.rssi)
+		print(Nodes.node1)
 	# 	while True:
 	# 		if (Nodes.node0.nodeid or Nodes.node1.nodeid or Nodes.node2.nodeid or Nodes.node3.nodeid) is None:
 	# 			print("Acquiring")
@@ -109,6 +116,9 @@ def main():
 	root = Tk()
 	Window(root)
 	root.mainloop()
+	# root = Tk()
+	# Window(root)
+	# root.mainloop()
 
 
 if __name__ == "__main__":
