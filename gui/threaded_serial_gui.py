@@ -78,6 +78,10 @@ class Window(Frame):
 		self.node0labelsoil.grid(column=0, row=4)
 		self.node0labelsoilres = ttk.Label(self.nodeframe0, text='999')
 		self.node0labelsoilres.grid(column=1, row=4)
+		self.node0labelstatus = ttk.Label(self.nodeframe0, text='Status')
+		self.node0labelstatus.grid(column=0, row=5)
+		self.node0labelstatusres = ttk.Label(self.nodeframe0, text='WARNING')
+		self.node0labelstatusres.grid(column=1, row=5)
 
 		self.nodeframe1 = ttk.LabelFrame(self.frame1, text='Node 1')
 		self.nodeframe1.grid(column=0, row=1)
@@ -101,6 +105,10 @@ class Window(Frame):
 		self.node1labelsoil.grid(column=0, row=4)
 		self.node1labelsoilres = ttk.Label(self.nodeframe1, text='999')
 		self.node1labelsoilres.grid(column=1, row=4)
+		self.node1labelstatus = ttk.Label(self.nodeframe1, text='Status')
+		self.node1labelstatus.grid(column=0, row=5)
+		self.node1labelstatusres = ttk.Label(self.nodeframe1, text='WARNING')
+		self.node1labelstatusres.grid(column=1, row=5)
 
 		self.nodeframe2 = ttk.LabelFrame(self.frame1, text='Node 2')
 		self.nodeframe2.grid(column=1, row=0)
@@ -124,6 +132,10 @@ class Window(Frame):
 		self.node2labelsoil.grid(column=0, row=4)
 		self.node2labelsoilres = ttk.Label(self.nodeframe2, text='999')
 		self.node2labelsoilres.grid(column=1, row=4)
+		self.node2labelstatus = ttk.Label(self.nodeframe2, text='Status')
+		self.node2labelstatus.grid(column=0, row=5)
+		self.node2labelstatusres = ttk.Label(self.nodeframe2, text='WARNING')
+		self.node2labelstatusres.grid(column=1, row=5)
 
 		self.nodeframe3 = ttk.LabelFrame(self.frame1, text='Node 3')
 		self.nodeframe3.grid(column=1, row=1)
@@ -147,6 +159,10 @@ class Window(Frame):
 		self.node3labelsoil.grid(column=0, row=4)
 		self.node3labelsoilres = ttk.Label(self.nodeframe3, text='999')
 		self.node3labelsoilres.grid(column=1, row=4)
+		self.node3labelstatus = ttk.Label(self.nodeframe3, text='Status')
+		self.node3labelstatus.grid(column=0, row=5)
+		self.node3labelstatusres = ttk.Label(self.nodeframe3, text='WARNING')
+		self.node3labelstatusres.grid(column=1, row=5)
 
 		# initialize buttons and other gui stuff
 		self.init_window()
@@ -232,6 +248,28 @@ class Window(Frame):
 		self.node3labellatres.configure(text=Nodes.node3.lat)
 		self.node3labellngres.configure(text=Nodes.node3.lng)
 		self.node3labelsoilres.configure(text=Nodes.node3.soil)
+
+		# set node status based on rssi, coords
+		if (int(Nodes.node0.rssi) >= -103) and (float(Nodes.node0.lat) == -105.26) and (
+				float(Nodes.node0.lng) == 40.01):
+			self.node0labelstatusres.configure(text='OK')
+		else:
+			self.node0labelstatusres.configure(text='WARNING')
+		if (int(Nodes.node1.rssi) >= -103) and (float(Nodes.node1.lat) == -105.26) and (
+				float(Nodes.node1.lng) == 40.01):
+			self.node1labelstatusres.configure(text='OK')
+		else:
+			self.node1labelstatusres.configure(text='WARNING')
+		if (int(Nodes.node2.rssi) >= -103) and (float(Nodes.node2.lat) == -105.26) and (
+				float(Nodes.node2.lng) == 40.01):
+			self.node2labelstatusres.configure(text='OK')
+		else:
+			self.node2labelstatusres.configure(text='WARNING')
+		if (int(Nodes.node3.rssi) >= -103) and (float(Nodes.node3.lat) == -105.26) and (
+				float(Nodes.node3.lng) == 40.01):
+			self.node3labelstatusres.configure(text='OK')
+		else:
+			self.node3labelstatusres.configure(text='WARNING')
 
 	def connection_exit(self):  # processes button press to close serial session and exit the program
 		self.serial_port.close()
