@@ -80,7 +80,7 @@ class Window(Frame):
 		self.node0labelsoilres.grid(column=1, row=4)
 		self.node0labelstatus = ttk.Label(self.nodeframe0, text='Status')
 		self.node0labelstatus.grid(column=0, row=5)
-		self.node0labelstatusres = ttk.Label(self.nodeframe0, text='WARNING')
+		self.node0labelstatusres = ttk.Label(self.nodeframe0, text='ERROR', background='#f00', foreground='#fff')
 		self.node0labelstatusres.grid(column=1, row=5)
 
 		self.nodeframe1 = ttk.LabelFrame(self.frame1, text='Node 1')
@@ -107,7 +107,7 @@ class Window(Frame):
 		self.node1labelsoilres.grid(column=1, row=4)
 		self.node1labelstatus = ttk.Label(self.nodeframe1, text='Status')
 		self.node1labelstatus.grid(column=0, row=5)
-		self.node1labelstatusres = ttk.Label(self.nodeframe1, text='WARNING')
+		self.node1labelstatusres = ttk.Label(self.nodeframe1, text='ERROR', background='#f00', foreground='#fff')
 		self.node1labelstatusres.grid(column=1, row=5)
 
 		self.nodeframe2 = ttk.LabelFrame(self.frame1, text='Node 2')
@@ -134,7 +134,7 @@ class Window(Frame):
 		self.node2labelsoilres.grid(column=1, row=4)
 		self.node2labelstatus = ttk.Label(self.nodeframe2, text='Status')
 		self.node2labelstatus.grid(column=0, row=5)
-		self.node2labelstatusres = ttk.Label(self.nodeframe2, text='WARNING')
+		self.node2labelstatusres = ttk.Label(self.nodeframe2, text='ERROR', background='#f00', foreground='#fff')
 		self.node2labelstatusres.grid(column=1, row=5)
 
 		self.nodeframe3 = ttk.LabelFrame(self.frame1, text='Node 3')
@@ -161,7 +161,7 @@ class Window(Frame):
 		self.node3labelsoilres.grid(column=1, row=4)
 		self.node3labelstatus = ttk.Label(self.nodeframe3, text='Status')
 		self.node3labelstatus.grid(column=0, row=5)
-		self.node3labelstatusres = ttk.Label(self.nodeframe3, text='WARNING')
+		self.node3labelstatusres = ttk.Label(self.nodeframe3, text='ERROR', background='#f00', foreground='#fff')
 		self.node3labelstatusres.grid(column=1, row=5)
 
 		# initialize buttons and other gui stuff
@@ -170,7 +170,7 @@ class Window(Frame):
 		# daemonize and start threading for serial port reading and sensor status refreshing
 		thread = threading.Thread(target=self.read_from_port, args=())
 		thread.daemon = True
-		self.scheduler.add_job(self.refresh_sensor_status, 'interval', seconds=30)
+		self.scheduler.add_job(self.refresh_sensor_status, 'interval', seconds=20)
 		self.scheduler.start()
 		thread.start()
 
@@ -250,26 +250,29 @@ class Window(Frame):
 		self.node3labelsoilres.configure(text=Nodes.node3.soil)
 
 		# set node status based on rssi, coords
-		if (int(Nodes.node0.rssi) >= -103) and (float(Nodes.node0.lat) == -105.26) and (
-				float(Nodes.node0.lng) == 40.01):
-			self.node0labelstatusres.configure(text='OK')
-		else:
-			self.node0labelstatusres.configure(text='WARNING')
-		if (int(Nodes.node1.rssi) >= -103) and (float(Nodes.node1.lat) == -105.26) and (
-				float(Nodes.node1.lng) == 40.01):
-			self.node1labelstatusres.configure(text='OK')
-		else:
-			self.node1labelstatusres.configure(text='WARNING')
-		if (int(Nodes.node2.rssi) >= -103) and (float(Nodes.node2.lat) == -105.26) and (
-				float(Nodes.node2.lng) == 40.01):
-			self.node2labelstatusres.configure(text='OK')
-		else:
-			self.node2labelstatusres.configure(text='WARNING')
-		if (int(Nodes.node3.rssi) >= -103) and (float(Nodes.node3.lat) == -105.26) and (
-				float(Nodes.node3.lng) == 40.01):
-			self.node3labelstatusres.configure(text='OK')
-		else:
-			self.node3labelstatusres.configure(text='WARNING')
+		try:
+			if (int(Nodes.node0.rssi) >= -103) and (float(Nodes.node0.lat) == -105.26) and (
+					float(Nodes.node0.lng) == 40.01):
+				self.node0labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=7, anchor=CENTER)
+			else:
+				self.node0labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER)
+			if (int(Nodes.node1.rssi) >= -103) and (float(Nodes.node1.lat) == -105.26) and (
+					float(Nodes.node1.lng) == 40.01):
+				self.node1labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=7, anchor=CENTER)
+			else:
+				self.node1labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER)
+			if (int(Nodes.node2.rssi) >= -103) and (float(Nodes.node2.lat) == -105.26) and (
+					float(Nodes.node2.lng) == 40.01):
+				self.node2labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=7, anchor=CENTER)
+			else:
+				self.node2labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER)
+			if (int(Nodes.node3.rssi) >= -103) and (float(Nodes.node3.lat) == -105.26) and (
+					float(Nodes.node3.lng) == 40.01):
+				self.node3labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=7, anchor=CENTER)
+			else:
+				self.node3labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER)
+		except TypeError:
+			pass
 
 	def connection_exit(self):  # processes button press to close serial session and exit the program
 		self.serial_port.close()
