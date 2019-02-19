@@ -253,24 +253,24 @@ class Window(Frame):
 		try:
 			if (int(Nodes.node0.rssi) >= -103) and (float(Nodes.node0.lat) == -105.26) and (
 					float(Nodes.node0.lng) == 40.01):
-				self.node0labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=7, anchor=CENTER)
+				self.node0labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10, anchor=CENTER)
 			else:
-				self.node0labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER)
+				self.node0labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER, width=10)
 			if (int(Nodes.node1.rssi) >= -103) and (float(Nodes.node1.lat) == -105.26) and (
 					float(Nodes.node1.lng) == 40.01):
-				self.node1labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=7, anchor=CENTER)
+				self.node1labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10, anchor=CENTER)
 			else:
-				self.node1labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER)
+				self.node1labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER, width=10)
 			if (int(Nodes.node2.rssi) >= -103) and (float(Nodes.node2.lat) == -105.26) and (
 					float(Nodes.node2.lng) == 40.01):
-				self.node2labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=7, anchor=CENTER)
+				self.node2labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10, anchor=CENTER)
 			else:
-				self.node2labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER)
+				self.node2labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER, width=10)
 			if (int(Nodes.node3.rssi) >= -103) and (float(Nodes.node3.lat) == -105.26) and (
 					float(Nodes.node3.lng) == 40.01):
-				self.node3labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=7, anchor=CENTER)
+				self.node3labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10, anchor=CENTER)
 			else:
-				self.node3labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER)
+				self.node3labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER, width=10)
 		except TypeError:
 			pass
 
