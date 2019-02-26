@@ -168,11 +168,11 @@ class Window(Frame):
 		self.init_window()
 
 		# daemonize and start threading for serial port reading and sensor status refreshing
-		thread = threading.Thread(target=self.read_from_port, args=())
-		thread.daemon = True
+		self.thread = threading.Thread(target=self.read_from_port, args=())
+		self.thread.daemon = True
 		self.scheduler.add_job(self.refresh_sensor_status, 'interval', seconds=20)
 		self.scheduler.start()
-		thread.start()
+		self.thread.start()
 
 	def init_window(self):
 		self.master.title("Smart Agriculture Control System Interface")
@@ -276,21 +276,18 @@ class Window(Frame):
 
 	def connection_exit(self):  # processes button press to close serial session and exit the program
 		self.serial_port.close()
+		root.quit()
+		self.scheduler.shutdown()
 		sys.exit()
 
 
-def main():
-	# initialize and start instance of gui
-	try:
-		root = Tk()
-		Window(root)
-		root.mainloop()
-	except RuntimeError:
-		print("A Fatal Error Occurred")
-		sys.exit()
-	finally:
-		sys.exit()
-
-
-if __name__ == "__main__":
-	main()
+# initialize and start instance of gui
+try:
+	root = Tk()
+	Window(root)
+	root.mainloop()
+except RuntimeError:
+	print("A Fatal Error Occurred")
+	sys.exit()
+finally:
+	sys.exit()
