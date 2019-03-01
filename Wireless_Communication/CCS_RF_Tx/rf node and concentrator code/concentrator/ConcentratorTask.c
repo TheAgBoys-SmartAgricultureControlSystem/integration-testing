@@ -311,23 +311,22 @@ static void updateLcd(void) {
     Display_printf(hDisplayLcd, 0, 0, "Nodes Value SW  RSSI");
 
     //clear screen, put cuser to beggining of terminal and print the header
-    Display_printf(hDisplaySerial, 0, 0, "\033[2J \033[0;0HNodes   Value   SW    RSSI");
+    //Display_printf(hDisplaySerial, 0, 0, "\033[2J \033[0;0HNodes   Value   SW    RSSI");
 
     /* Start on the second line */
     currentLcdLine = 1;
 
     /* Write one line per node */
     while ((nodePointer < &knownSensorNodes[CONCENTRATOR_MAX_NODES]) &&
-          (nodePointer->address != 0) &&
-          (currentLcdLine < CONCENTRATOR_DISPLAY_LINES))
+          (nodePointer->address != 0))
     {
         /* print to LCD */
-        Display_printf(hDisplayLcd, currentLcdLine, 0, "0x%02x  0x%02x  %d   %04d",
+        /*Display_printf(hDisplayLcd, currentLcdLine, 0, "0x%02x  0x%02x  %d   %04d",
                 nodePointer->address, nodePointer->latestAdcValue, nodePointer->latest_number,
-                nodePointer->latestRssi);
+                nodePointer->latestRssi);*/
 
         /* print to UART */
-        Display_printf(hDisplaySerial, 0, 0, "0x%02x    0x%02x    %d    %04d",
+        Display_printf(hDisplaySerial, 0, 0, "NodeId:0x%02x#SoilMoisture:0x%02x#Coords:%d#RSSI:%04d\n",
                 nodePointer->address, nodePointer->latestAdcValue, nodePointer->latest_number,
                 nodePointer->latestRssi);
 

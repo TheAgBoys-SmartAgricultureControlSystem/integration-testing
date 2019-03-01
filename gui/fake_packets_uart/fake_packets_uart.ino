@@ -4,6 +4,7 @@ int rssi = 0;
 float lat = 0;
 float lng = 0;
 int soil = 0;
+int analogPin = A3;
 
 void node_write(int nodeid, int rssi, float lat, float lng, int soil){
   //Serial.write("start_packet");
@@ -32,12 +33,7 @@ void node0(){
  rssi = random(-150, 0);  // rssi can be from noise floor to 0
  lat = -105.26; // DLC building
  lng = 40.01; // DLC building
- soil = random(0, 4096); // percentage from 0 to 4095
- /*if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
-  nodestatus = 0x01;
- }else{
-  nodestatus = 0x00;
- }*/
+ soil = analogRead(analogPin); // percentage from 0 to 4095
  node_write(nodeid, rssi, lat, lng, soil);
 }
 
@@ -46,12 +42,7 @@ void node1(){
  rssi = random(-150, 0);  // rssi can be from noise floor to 0
  lat = -105.26; // DLC building
  lng = 40.01; // DLC building
- soil = random(0, 101); // percentage from 0 to 100
- /*if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
-  nodestatus = 0x01;
- }else{
-  nodestatus = 0x00;
- }*/
+ soil = analogRead(analogPin); // percentage from 0 to 100
  node_write(nodeid, rssi, lat, lng, soil);
 }
 
@@ -60,12 +51,7 @@ void node2(){
  rssi = random(-150, 0);  // rssi can be from noise floor to 0
  lat = -105.26; // DLC building
  lng = 40.01; // DLC building
- soil = random(0, 101); // percentage from 0 to 100
- /*if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
-  nodestatus = 0x01;
- }else{
-  nodestatus = 0x00;
- }*/
+ soil = analogRead(analogPin); // percentage from 0 to 100
  node_write(nodeid, rssi, lat, lng, soil);
 }
 
@@ -74,12 +60,7 @@ void node3(){
  rssi = random(-150, 0);  // rssi can be from noise floor to 0
  lat = -105.26; // DLC building
  lng = 40.01; // DLC building
- soil = random(0, 101); // percentage from 0 to 100
- /*if( (rssi > -104) || (lat != -105.26) || (lng != 40.01)){
-  nodestatus = 0x01;
- }else{
-  nodestatus = 0x00;
- }*/
+ soil = analogRead(analogPin); // percentage from 0 to 100
  node_write(nodeid, rssi, lat, lng, soil);
 }
 
