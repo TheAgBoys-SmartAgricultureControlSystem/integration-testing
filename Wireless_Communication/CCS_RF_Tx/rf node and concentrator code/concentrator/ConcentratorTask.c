@@ -310,7 +310,7 @@ static void updateLcd(void) {
     Display_clear(hDisplayLcd);
     Display_printf(hDisplayLcd, 0, 0, "Nodes Value SW  RSSI");
 
-    //clear screen, put cuser to beggining of terminal and print the header
+    //clear screen, put cursor to beginning of terminal and print the header
     //Display_printf(hDisplaySerial, 0, 0, "\033[2J \033[0;0HNodes   Value   SW    RSSI");
 
     /* Start on the second line */
