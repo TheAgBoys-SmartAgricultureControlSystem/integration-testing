@@ -326,9 +326,9 @@ static void updateLcd(void) {
                 nodePointer->latestRssi);*/
 
         /* print to UART */
-        Display_printf(hDisplaySerial, 0, 0, "NodeId:0x%02x#SoilMoisture:0x%02x#Coords:%d#RSSI:%04d\n",
+        Display_printf(hDisplaySerial, 0, 0, "NodeId:0x%02x#SoilMoisture:0x%02x#Latitude:%d#Longitude:%d#RSSI:%04d\n",
                 nodePointer->address, nodePointer->latestAdcValue, nodePointer->latest_number,
-                nodePointer->latestRssi);
+                nodePointer->latest_number, nodePointer->latestRssi);
 
         nodePointer++;
         currentLcdLine++;
