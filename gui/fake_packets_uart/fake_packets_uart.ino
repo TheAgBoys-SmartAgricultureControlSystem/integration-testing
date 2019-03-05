@@ -8,9 +8,9 @@ int analogPin = A3;
 
 void clearandhome(){
   Serial.write(27);       // ESC command
-  Serial.print("[2J");    // clear screen command
+  Serial.print("[2J ");    // clear screen command
   Serial.write(27);
-  Serial.print("[H");     // cursor to home command
+  Serial.print("[0;0H");     // cursor to home command
 }
 void node_write(int nodeid, int rssi, float lat, float lng, int soil){
 
