@@ -6,8 +6,16 @@ float lng = 0;
 int soil = 0;
 int analogPin = A3;
 
+void clearandhome(){
+  Serial.write(27);       // ESC command
+  Serial.print("[2J");    // clear screen command
+  Serial.write(27);
+  Serial.print("[H");     // cursor to home command
+}
 void node_write(int nodeid, int rssi, float lat, float lng, int soil){
-  //Serial.write("start_packet");
+
+  clearandhome();
+  
   Serial.write("NodeId:");
   Serial.print(nodeid, HEX);
   Serial.write("#");
@@ -22,7 +30,6 @@ void node_write(int nodeid, int rssi, float lat, float lng, int soil){
   Serial.write("#");
   Serial.write("RSSI:");
   Serial.print(rssi);
-  //Serial.write("#");
   Serial.println('\n');
   
   delay(490);

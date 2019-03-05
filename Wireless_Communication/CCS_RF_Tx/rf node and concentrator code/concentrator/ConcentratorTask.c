@@ -308,7 +308,7 @@ static void updateLcd(void) {
 
     /* Clear the display and write header on first line */
     Display_clear(hDisplayLcd);
-    Display_printf(hDisplayLcd, 0, 0, "Nodes Value SW  RSSI");
+    //Display_printf(hDisplayLcd, 0, 0, "Nodes Value SW  RSSI");
 
     //clear screen, put cursor to beginning of terminal and print the header
     //Display_printf(hDisplaySerial, 0, 0, "\033[2J \033[0;0HNodes   Value   SW    RSSI");
@@ -326,9 +326,9 @@ static void updateLcd(void) {
                 nodePointer->latestRssi);*/
 
         /* print to UART */
-        Display_printf(hDisplaySerial, 0, 0, "NodeId:0x%02x#SoilMoisture:0x%02x#Latitude:%d#Longitude:%d#RSSI:%04d\n",
+        Display_printf(hDisplaySerial, 0, 0, "\033[2J \033[0;0HNodeId:0x%02x#SoilMoisture:0x%02x#Coords:%d#RSSI:%04d",
                 nodePointer->address, nodePointer->latestAdcValue, nodePointer->latest_number,
-                nodePointer->latest_number, nodePointer->latestRssi);
+                nodePointer->latestRssi);
 
         nodePointer++;
         currentLcdLine++;
