@@ -1,10 +1,14 @@
 import collections
+import logging
 import threading
 from tkinter import *
 from tkinter import ttk
 
 import serial
 from apscheduler.schedulers.background import BackgroundScheduler
+
+logging.basicConfig(level=logging.DEBUG, filename='gui.log', filemode='a',
+					format='%(asctime)s - %(processName)s:%(levelname)s - %(funcName)s: %(message)s')
 
 
 class Nodes:
@@ -14,30 +18,41 @@ class Nodes:
 	node1 = Node(nodeid=None, rssi=None, lat=None, lng=None, soil=None)
 	node2 = Node(nodeid=None, rssi=None, lat=None, lng=None, soil=None)
 	node3 = Node(nodeid=None, rssi=None, lat=None, lng=None, soil=None)
+	logging.debug("Node named tuples initialized")
 
 
 class Window(Frame):
 	def __init__(self, master=None):
 		super(Window, self).__init__()
 		Frame.__init__(self, master)
+		logging.debug("Window instance created")
 
+		self.port = 'COM3'
+		self.baud = 115200
 		# attempt serial connection with receiver
 		try:
 			self.serial_port = serial.Serial(
-				port='COM3',
-				baudrate=115200,
+				port=self.port,
+				baudrate=self.baud,
 				parity="N",
 				stopbits=1,
 				bytesize=8,
 				timeout=8
 			)
 			print("Connection Successful")
+			logging.info("Connection to %s at %d baud Successful", self.port, self.baud)
 		except serial.SerialException:
 			print("Error connecting")
+			logging.critical("Failed to connect to %s at %d baud", self.port, self.baud)
 			sys.exit()
+
+		self.latitude = -105.260000
+		self.longitude = 40.0099
+		self.rssi_min = -103
 
 		# start scheduler for background tasks (i.e. refresh)
 		self.scheduler = BackgroundScheduler()
+		logging.info("Background Scheduler Started")
 
 		# general status frame
 		self.genstatus = LabelFrame(master, width=640, height=120, text="General Status")
@@ -164,6 +179,7 @@ class Window(Frame):
 		self.node3labelstatusres = ttk.Label(self.nodeframe3, text='ERROR', background='#f00', foreground='#fff')
 		self.node3labelstatusres.grid(column=1, row=5)
 
+		logging.debug("Finished building gui skeleton")
 		# initialize buttons and other gui stuff
 		self.init_window()
 
@@ -173,6 +189,8 @@ class Window(Frame):
 		self.scheduler.add_job(self.refresh_sensor_status, 'interval', seconds=20)
 		self.scheduler.start()
 		self.thread.start()
+
+		logging.debug("Thread daemonized and Jobs added")
 
 	def init_window(self):
 		self.master.title("Smart Agriculture Control System Interface")
@@ -187,14 +205,19 @@ class Window(Frame):
 		self.quitConnection = ttk.Button(self.genstatus, text="Exit", command=self.connection_exit)
 		self.quitConnection.grid(column=0, row=0)
 
+		logging.debug("GUI fleshed out")
+
 	def read_from_port(self):
 		while True:
 			# read byte lines from serial port, decode and strip bytestream
 			self.reading = self.serial_port.readline().decode('utf-8')
-			# print(self.reading)
-			self.reading = self.reading.lstrip(chr(27) + "8" + chr(27) + "7" + chr(27) + "[10r" + chr(27) + "[1;1H" + chr(27) + "[2K" + chr(27) + "[2J " + chr(27) + "[0;0H")
+			logging.debug("Incoming Packet String: [%s]", self.reading)
+			self.reading = self.reading.lstrip(
+				chr(27) + "8" + chr(27) + "7" + chr(27) + "[10r" + chr(27) + "[1;1H" + chr(27) + "[2K" + chr(
+					27) + "[2J " + chr(27) + "[0;0H")
 			self.reading = self.reading.rstrip('\n')
 			self.global_data = str(self.reading)
+			logging.debug("Processed Packet String: [%s]", self.global_data)
 			try:
 				# ignore newline lines
 				if str(self.global_data).isspace():
@@ -221,65 +244,84 @@ class Window(Frame):
 						Nodes.node3 = Nodes.node3._replace(nodeid=self.global_data[0][7:], rssi=self.global_data[4][5:],
 														   lat=self.global_data[2][9:],
 														   lng=self.global_data[3][10:], soil=self.global_data[1][13:])
+					logging.debug("Packet data sent to appropriate named tuples")
 			except IndexError:
+				logging.error("Index Error in filling packet named tuples with packet strings")
 				pass
 
 	def refresh_sensor_status(self):
 		print("Sensor Status Refreshed")
+		logging.info("Sensor Status Refreshed")
 		# set node frames in sensor status frame to fresh values
 		self.node0labelnodeidres.configure(text=Nodes.node0.nodeid)
 		self.node0labelrssires.configure(text=Nodes.node0.rssi)
 		self.node0labellatres.configure(text=Nodes.node0.lat)
 		self.node0labellngres.configure(text=Nodes.node0.lng)
 		self.node0labelsoilres.configure(text=Nodes.node0.soil)
+		logging.debug("Node 0 refreshed")
 
 		self.node1labelnodeidres.configure(text=Nodes.node1.nodeid)
 		self.node1labelrssires.configure(text=Nodes.node1.rssi)
 		self.node1labellatres.configure(text=Nodes.node1.lat)
 		self.node1labellngres.configure(text=Nodes.node1.lng)
 		self.node1labelsoilres.configure(text=Nodes.node1.soil)
+		logging.debug("Node 1 refreshed")
 
 		self.node2labelnodeidres.configure(text=Nodes.node2.nodeid)
 		self.node2labelrssires.configure(text=Nodes.node2.rssi)
 		self.node2labellatres.configure(text=Nodes.node2.lat)
 		self.node2labellngres.configure(text=Nodes.node2.lng)
 		self.node2labelsoilres.configure(text=Nodes.node2.soil)
+		logging.debug("Node 2 refreshed")
 
 		self.node3labelnodeidres.configure(text=Nodes.node3.nodeid)
 		self.node3labelrssires.configure(text=Nodes.node3.rssi)
 		self.node3labellatres.configure(text=Nodes.node3.lat)
 		self.node3labellngres.configure(text=Nodes.node3.lng)
 		self.node3labelsoilres.configure(text=Nodes.node3.soil)
+		logging.debug("Node 3 refreshed")
 
 		# set node status based on rssi, coords
 		try:
-			if (int(Nodes.node0.rssi) >= -103) and (float(Nodes.node0.lat) == -105.260000) and (
-					float(Nodes.node0.lng) == 40.0099):
-				self.node0labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10, anchor=CENTER)
+			if (int(Nodes.node0.rssi) >= self.rssi_min) and (float(Nodes.node0.lat) == self.latitude) and (
+					float(Nodes.node0.lng) == self.longitude):
+				self.node0labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10,
+												   anchor=CENTER)
 			else:
-				self.node0labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER, width=10)
-			if (int(Nodes.node1.rssi) >= -103) and (float(Nodes.node1.lat) == -105.260000) and (
-					float(Nodes.node1.lng) == 40.0099):
-				self.node1labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10, anchor=CENTER)
+				self.node0labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER,
+												   width=10)
+			if (int(Nodes.node1.rssi) >= self.rssi_min) and (float(Nodes.node1.lat) == self.latitude) and (
+					float(Nodes.node1.lng) == self.longitude):
+				self.node1labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10,
+												   anchor=CENTER)
 			else:
-				self.node1labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER, width=10)
-			if (int(Nodes.node2.rssi) >= -103) and (float(Nodes.node2.lat) == -105.260000) and (
-					float(Nodes.node2.lng) == 40.0099):
-				self.node2labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10, anchor=CENTER)
+				self.node1labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER,
+												   width=10)
+			if (int(Nodes.node2.rssi) >= self.rssi_min) and (float(Nodes.node2.lat) == self.latitude) and (
+					float(Nodes.node2.lng) == self.longitude):
+				self.node2labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10,
+												   anchor=CENTER)
 			else:
-				self.node2labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER, width=10)
-			if (int(Nodes.node3.rssi) >= -103) and (float(Nodes.node3.lat) == -105.260000) and (
-					float(Nodes.node3.lng) == 40.0099):
-				self.node3labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10, anchor=CENTER)
+				self.node2labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER,
+												   width=10)
+			if (int(Nodes.node3.rssi) >= self.rssi_min) and (float(Nodes.node3.lat) == self.latitude) and (
+					float(Nodes.node3.lng) == self.longitude):
+				self.node3labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10,
+												   anchor=CENTER)
 			else:
-				self.node3labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER, width=10)
+				self.node3labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER,
+												   width=10)
+
+			logging.info("Node Status Set")
 		except TypeError:
+			logging.error("Type Error in setting Node status")
 			pass
 
 	def connection_exit(self):  # processes button press to close serial session and exit the program
 		self.serial_port.close()
 		root.quit()
 		self.scheduler.shutdown()
+		logging.info("Quitting GUI program")
 		sys.exit()
 
 
@@ -288,8 +330,10 @@ try:
 	root = Tk()
 	Window(root)
 	root.mainloop()
+	logging.info("GUI instance started")
 except RuntimeError:
 	print("A Fatal Error Occurred")
+	logging.critical("Fatal Runtime Error")
 	sys.exit()
 finally:
 	sys.exit()
