@@ -24,8 +24,8 @@ class Window(Frame):
 		# attempt serial connection with receiver
 		try:
 			self.serial_port = serial.Serial(
-				port='COM7',
-				baudrate=9600,
+				port='COM3',
+				baudrate=115200,
 				parity="N",
 				stopbits=1,
 				bytesize=8,
@@ -191,7 +191,8 @@ class Window(Frame):
 		while True:
 			# read byte lines from serial port, decode and strip bytestream
 			self.reading = self.serial_port.readline().decode('utf-8')
-			self.reading = self.reading.lstrip(chr(27) + "[2J " + chr(27) + "[0;0H")
+			# print(self.reading)
+			self.reading = self.reading.lstrip(chr(27) + "8" + chr(27) + "7" + chr(27) + "[10r" + chr(27) + "[1;1H" + chr(27) + "[2K" + chr(27) + "[2J " + chr(27) + "[0;0H")
 			self.reading = self.reading.rstrip('\n')
 			self.global_data = str(self.reading)
 			try:
@@ -252,23 +253,23 @@ class Window(Frame):
 
 		# set node status based on rssi, coords
 		try:
-			if (int(Nodes.node0.rssi) >= -103) and (float(Nodes.node0.lat) == -105.26) and (
-					float(Nodes.node0.lng) == 40.01):
+			if (int(Nodes.node0.rssi) >= -103) and (float(Nodes.node0.lat) == -105.260000) and (
+					float(Nodes.node0.lng) == 40.0099):
 				self.node0labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10, anchor=CENTER)
 			else:
 				self.node0labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER, width=10)
-			if (int(Nodes.node1.rssi) >= -103) and (float(Nodes.node1.lat) == -105.26) and (
-					float(Nodes.node1.lng) == 40.01):
+			if (int(Nodes.node1.rssi) >= -103) and (float(Nodes.node1.lat) == -105.260000) and (
+					float(Nodes.node1.lng) == 40.0099):
 				self.node1labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10, anchor=CENTER)
 			else:
 				self.node1labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER, width=10)
-			if (int(Nodes.node2.rssi) >= -103) and (float(Nodes.node2.lat) == -105.26) and (
-					float(Nodes.node2.lng) == 40.01):
+			if (int(Nodes.node2.rssi) >= -103) and (float(Nodes.node2.lat) == -105.260000) and (
+					float(Nodes.node2.lng) == 40.0099):
 				self.node2labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10, anchor=CENTER)
 			else:
 				self.node2labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER, width=10)
-			if (int(Nodes.node3.rssi) >= -103) and (float(Nodes.node3.lat) == -105.26) and (
-					float(Nodes.node3.lng) == 40.01):
+			if (int(Nodes.node3.rssi) >= -103) and (float(Nodes.node3.lat) == -105.260000) and (
+					float(Nodes.node3.lng) == 40.0099):
 				self.node3labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10, anchor=CENTER)
 			else:
 				self.node3labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER, width=10)
