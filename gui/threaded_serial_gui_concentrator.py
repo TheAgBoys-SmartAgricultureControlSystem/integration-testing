@@ -27,8 +27,8 @@ class Window(Frame):
 		Frame.__init__(self, master)
 		logging.debug("Window instance created")
 
-		self.port = 'COM3'
-		self.baud = 115200
+		self.port = 'COM7'
+		self.baud = 9600
 		# attempt serial connection with receiver
 		try:
 			self.serial_port = serial.Serial(
@@ -47,7 +47,7 @@ class Window(Frame):
 			sys.exit()
 
 		self.latitude = -105.260000
-		self.longitude = 40.0099
+		self.longitude = 40.01
 		self.rssi_min = -103
 
 		# start scheduler for background tasks (i.e. refresh)
@@ -283,29 +283,29 @@ class Window(Frame):
 
 		# set node status based on rssi, coords
 		try:
-			if (int(Nodes.node0.rssi) >= self.rssi_min) and (float(Nodes.node0.lat) == self.latitude) and (
-					float(Nodes.node0.lng) == self.longitude):
+			if (int(Nodes.node0.rssi) >= int(self.rssi_min)) and (float(Nodes.node0.lat) == float(self.latitude)) and (
+					float(Nodes.node0.lng) == float(self.longitude)):
 				self.node0labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10,
 												   anchor=CENTER)
 			else:
 				self.node0labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER,
 												   width=10)
-			if (int(Nodes.node1.rssi) >= self.rssi_min) and (float(Nodes.node1.lat) == self.latitude) and (
-					float(Nodes.node1.lng) == self.longitude):
+			if (int(Nodes.node1.rssi) >= int(self.rssi_min)) and (float(Nodes.node1.lat) == float(self.latitude)) and (
+					float(Nodes.node1.lng) == float(self.longitude)):
 				self.node1labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10,
 												   anchor=CENTER)
 			else:
 				self.node1labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER,
 												   width=10)
-			if (int(Nodes.node2.rssi) >= self.rssi_min) and (float(Nodes.node2.lat) == self.latitude) and (
-					float(Nodes.node2.lng) == self.longitude):
+			if (int(Nodes.node2.rssi) >= int(self.rssi_min)) and (float(Nodes.node2.lat) == float(self.latitude)) and (
+					float(Nodes.node2.lng) == float(self.longitude)):
 				self.node2labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10,
 												   anchor=CENTER)
 			else:
 				self.node2labelstatusres.configure(text='WARNING', background='#f00', foreground='#fff', anchor=CENTER,
 												   width=10)
-			if (int(Nodes.node3.rssi) >= self.rssi_min) and (float(Nodes.node3.lat) == self.latitude) and (
-					float(Nodes.node3.lng) == self.longitude):
+			if (int(Nodes.node3.rssi) >= int(self.rssi_min)) and (float(Nodes.node3.lat) == float(self.latitude)) and (
+					float(Nodes.node3.lng) == float(self.longitude)):
 				self.node3labelstatusres.configure(text='OK', background='#0f0', foreground='#fff', width=10,
 												   anchor=CENTER)
 			else:

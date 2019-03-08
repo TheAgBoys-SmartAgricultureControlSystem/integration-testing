@@ -1,0 +1,139 @@
+2019-03-07 17:09:45,062 - MainProcess:DEBUG - Nodes: Node named tuples initialized
+2019-03-07 17:09:45,242 - MainProcess:DEBUG - __init__: Window instance created
+2019-03-07 17:09:45,244 - MainProcess:INFO - __init__: Connection to COM7 at 9600 baud Successful
+2019-03-07 17:09:45,473 - MainProcess:INFO - __init__: Background Scheduler Started
+2019-03-07 17:09:45,500 - MainProcess:DEBUG - __init__: Finished building gui skeleton
+2019-03-07 17:09:45,502 - MainProcess:DEBUG - init_window: GUI fleshed out
+2019-03-07 17:09:45,560 - MainProcess:INFO - add_job: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2019-03-07 17:09:45,560 - MainProcess:INFO - _real_add_job: Added job "Window.refresh_sensor_status" to job store "default"
+2019-03-07 17:09:45,564 - MainProcess:INFO - start: Scheduler started
+2019-03-07 17:09:45,564 - MainProcess:DEBUG - _process_jobs: Looking for jobs to run
+2019-03-07 17:09:45,564 - MainProcess:DEBUG - _process_jobs: Next wakeup is due at 2019-03-07 17:10:05.560858-07:00 (in 19.995958 seconds)
+2019-03-07 17:09:45,564 - MainProcess:DEBUG - __init__: Thread daemonized and Jobs added
+2019-03-07 17:09:45,566 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [[2J [0;0HNodeId:0#SoilMoisture:351#Latitude:-105.26#Longitude:40.01#RSSI:-127
+]
+2019-03-07 17:09:45,567 - MainProcess:DEBUG - read_from_port: Processed Packet String: [NodeId:0#SoilMoisture:351#Latitude:-105.26#Longitude:40.01#RSSI:-127]
+2019-03-07 17:09:45,612 - MainProcess:DEBUG - read_from_port: Packet data sent to appropriate named tuples
+2019-03-07 17:09:45,612 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [
+]
+2019-03-07 17:09:45,612 - MainProcess:DEBUG - read_from_port: Processed Packet String: []
+2019-03-07 17:09:46,235 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [[2J [0;0HNodeId:0#SoilMoisture:421#Latitude:-105.26#Longitude:40.01#RSSI:-143
+]
+2019-03-07 17:09:46,235 - MainProcess:DEBUG - read_from_port: Processed Packet String: [NodeId:0#SoilMoisture:421#Latitude:-105.26#Longitude:40.01#RSSI:-143]
+2019-03-07 17:09:46,235 - MainProcess:DEBUG - read_from_port: Packet data sent to appropriate named tuples
+2019-03-07 17:09:46,235 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [
+]
+2019-03-07 17:09:46,235 - MainProcess:DEBUG - read_from_port: Processed Packet String: []
+2019-03-07 17:09:51,748 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [[2J [0;0HNodeId:1#SoilMoisture:352#Latitude:-105.26#Longitude:40.01#RSSI:-101
+]
+2019-03-07 17:09:51,748 - MainProcess:DEBUG - read_from_port: Processed Packet String: [NodeId:1#SoilMoisture:352#Latitude:-105.26#Longitude:40.01#RSSI:-101]
+2019-03-07 17:09:51,748 - MainProcess:DEBUG - read_from_port: Packet data sent to appropriate named tuples
+2019-03-07 17:09:51,749 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [
+]
+2019-03-07 17:09:51,749 - MainProcess:DEBUG - read_from_port: Processed Packet String: []
+2019-03-07 17:09:57,261 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [[2J [0;0HNodeId:2#SoilMoisture:349#Latitude:-105.26#Longitude:40.01#RSSI:-127
+]
+2019-03-07 17:09:57,261 - MainProcess:DEBUG - read_from_port: Processed Packet String: [NodeId:2#SoilMoisture:349#Latitude:-105.26#Longitude:40.01#RSSI:-127]
+2019-03-07 17:09:57,262 - MainProcess:DEBUG - read_from_port: Packet data sent to appropriate named tuples
+2019-03-07 17:09:57,262 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [
+]
+2019-03-07 17:09:57,262 - MainProcess:DEBUG - read_from_port: Processed Packet String: []
+2019-03-07 17:10:02,774 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [[2J [0;0HNodeId:3#SoilMoisture:349#Latitude:-105.26#Longitude:40.01#RSSI:-142
+]
+2019-03-07 17:10:02,774 - MainProcess:DEBUG - read_from_port: Processed Packet String: [NodeId:3#SoilMoisture:349#Latitude:-105.26#Longitude:40.01#RSSI:-142]
+2019-03-07 17:10:02,774 - MainProcess:DEBUG - read_from_port: Packet data sent to appropriate named tuples
+2019-03-07 17:10:02,774 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [
+]
+2019-03-07 17:10:02,775 - MainProcess:DEBUG - read_from_port: Processed Packet String: []
+2019-03-07 17:10:05,573 - MainProcess:DEBUG - _process_jobs: Looking for jobs to run
+2019-03-07 17:10:05,573 - MainProcess:INFO - run_job: Running job "Window.refresh_sensor_status (trigger: interval[0:00:20], next run at: 2019-03-07 17:10:05 MST)" (scheduled at 2019-03-07 17:10:05.560858-07:00)
+2019-03-07 17:10:05,573 - MainProcess:INFO - refresh_sensor_status: Sensor Status Refreshed
+2019-03-07 17:10:05,573 - MainProcess:DEBUG - _process_jobs: Next wakeup is due at 2019-03-07 17:10:25.560858-07:00 (in 19.987841 seconds)
+2019-03-07 17:10:05,578 - MainProcess:DEBUG - refresh_sensor_status: Node 0 refreshed
+2019-03-07 17:10:05,582 - MainProcess:DEBUG - refresh_sensor_status: Node 1 refreshed
+2019-03-07 17:10:05,592 - MainProcess:DEBUG - refresh_sensor_status: Node 2 refreshed
+2019-03-07 17:10:05,593 - MainProcess:DEBUG - refresh_sensor_status: Node 3 refreshed
+2019-03-07 17:10:05,594 - MainProcess:INFO - refresh_sensor_status: Node Status Set
+2019-03-07 17:10:05,594 - MainProcess:INFO - run_job: Job "Window.refresh_sensor_status (trigger: interval[0:00:20], next run at: 2019-03-07 17:10:25 MST)" executed successfully
+2019-03-07 17:10:08,286 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [[2J [0;0HNodeId:0#SoilMoisture:348#Latitude:-105.26#Longitude:40.01#RSSI:-20
+]
+2019-03-07 17:10:08,286 - MainProcess:DEBUG - read_from_port: Processed Packet String: [NodeId:0#SoilMoisture:348#Latitude:-105.26#Longitude:40.01#RSSI:-20]
+2019-03-07 17:10:08,287 - MainProcess:DEBUG - read_from_port: Packet data sent to appropriate named tuples
+2019-03-07 17:10:08,287 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [
+]
+2019-03-07 17:10:08,287 - MainProcess:DEBUG - read_from_port: Processed Packet String: []
+2019-03-07 17:10:13,796 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [[2J [0;0HNodeId:1#SoilMoisture:349#Latitude:-105.26#Longitude:40.01#RSSI:-28
+]
+2019-03-07 17:10:13,796 - MainProcess:DEBUG - read_from_port: Processed Packet String: [NodeId:1#SoilMoisture:349#Latitude:-105.26#Longitude:40.01#RSSI:-28]
+2019-03-07 17:10:13,796 - MainProcess:DEBUG - read_from_port: Packet data sent to appropriate named tuples
+2019-03-07 17:10:13,800 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [
+]
+2019-03-07 17:10:13,800 - MainProcess:DEBUG - read_from_port: Processed Packet String: []
+2019-03-07 17:10:19,309 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [[2J [0;0HNodeId:2#SoilMoisture:349#Latitude:-105.26#Longitude:40.01#RSSI:-6
+]
+2019-03-07 17:10:19,309 - MainProcess:DEBUG - read_from_port: Processed Packet String: [NodeId:2#SoilMoisture:349#Latitude:-105.26#Longitude:40.01#RSSI:-6]
+2019-03-07 17:10:19,309 - MainProcess:DEBUG - read_from_port: Packet data sent to appropriate named tuples
+2019-03-07 17:10:19,309 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [
+]
+2019-03-07 17:10:19,310 - MainProcess:DEBUG - read_from_port: Processed Packet String: []
+2019-03-07 17:10:24,822 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [[2J [0;0HNodeId:3#SoilMoisture:348#Latitude:-105.26#Longitude:40.01#RSSI:-22
+]
+2019-03-07 17:10:24,822 - MainProcess:DEBUG - read_from_port: Processed Packet String: [NodeId:3#SoilMoisture:348#Latitude:-105.26#Longitude:40.01#RSSI:-22]
+2019-03-07 17:10:24,822 - MainProcess:DEBUG - read_from_port: Packet data sent to appropriate named tuples
+2019-03-07 17:10:24,822 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [
+]
+2019-03-07 17:10:24,823 - MainProcess:DEBUG - read_from_port: Processed Packet String: []
+2019-03-07 17:10:25,567 - MainProcess:DEBUG - _process_jobs: Looking for jobs to run
+2019-03-07 17:10:25,567 - MainProcess:INFO - run_job: Running job "Window.refresh_sensor_status (trigger: interval[0:00:20], next run at: 2019-03-07 17:10:25 MST)" (scheduled at 2019-03-07 17:10:25.560858-07:00)
+2019-03-07 17:10:25,568 - MainProcess:INFO - refresh_sensor_status: Sensor Status Refreshed
+2019-03-07 17:10:25,569 - MainProcess:DEBUG - _process_jobs: Next wakeup is due at 2019-03-07 17:10:45.560858-07:00 (in 19.993183 seconds)
+2019-03-07 17:10:25,570 - MainProcess:DEBUG - refresh_sensor_status: Node 0 refreshed
+2019-03-07 17:10:25,574 - MainProcess:DEBUG - refresh_sensor_status: Node 1 refreshed
+2019-03-07 17:10:25,582 - MainProcess:DEBUG - refresh_sensor_status: Node 2 refreshed
+2019-03-07 17:10:25,586 - MainProcess:DEBUG - refresh_sensor_status: Node 3 refreshed
+2019-03-07 17:10:25,590 - MainProcess:INFO - refresh_sensor_status: Node Status Set
+2019-03-07 17:10:25,590 - MainProcess:INFO - run_job: Job "Window.refresh_sensor_status (trigger: interval[0:00:20], next run at: 2019-03-07 17:10:45 MST)" executed successfully
+2019-03-07 17:10:30,334 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [[2J [0;0HNodeId:0#SoilMoisture:347#Latitude:-105.26#Longitude:40.01#RSSI:-127
+]
+2019-03-07 17:10:30,334 - MainProcess:DEBUG - read_from_port: Processed Packet String: [NodeId:0#SoilMoisture:347#Latitude:-105.26#Longitude:40.01#RSSI:-127]
+2019-03-07 17:10:30,336 - MainProcess:DEBUG - read_from_port: Packet data sent to appropriate named tuples
+2019-03-07 17:10:30,336 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [
+]
+2019-03-07 17:10:30,336 - MainProcess:DEBUG - read_from_port: Processed Packet String: []
+2019-03-07 17:10:35,847 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [[2J [0;0HNodeId:1#SoilMoisture:346#Latitude:-105.26#Longitude:40.01#RSSI:-41
+]
+2019-03-07 17:10:35,848 - MainProcess:DEBUG - read_from_port: Processed Packet String: [NodeId:1#SoilMoisture:346#Latitude:-105.26#Longitude:40.01#RSSI:-41]
+2019-03-07 17:10:35,848 - MainProcess:DEBUG - read_from_port: Packet data sent to appropriate named tuples
+2019-03-07 17:10:35,848 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [
+]
+2019-03-07 17:10:35,848 - MainProcess:DEBUG - read_from_port: Processed Packet String: []
+2019-03-07 17:10:41,356 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [[2J [0;0HNodeId:2#SoilMoisture:347#Latitude:-105.26#Longitude:40.01#RSSI:-60
+]
+2019-03-07 17:10:41,356 - MainProcess:DEBUG - read_from_port: Processed Packet String: [NodeId:2#SoilMoisture:347#Latitude:-105.26#Longitude:40.01#RSSI:-60]
+2019-03-07 17:10:41,357 - MainProcess:DEBUG - read_from_port: Packet data sent to appropriate named tuples
+2019-03-07 17:10:41,360 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [
+]
+2019-03-07 17:10:41,361 - MainProcess:DEBUG - read_from_port: Processed Packet String: []
+2019-03-07 17:10:45,565 - MainProcess:DEBUG - _process_jobs: Looking for jobs to run
+2019-03-07 17:10:45,567 - MainProcess:INFO - run_job: Running job "Window.refresh_sensor_status (trigger: interval[0:00:20], next run at: 2019-03-07 17:10:45 MST)" (scheduled at 2019-03-07 17:10:45.560858-07:00)
+2019-03-07 17:10:45,567 - MainProcess:INFO - refresh_sensor_status: Sensor Status Refreshed
+2019-03-07 17:10:45,568 - MainProcess:DEBUG - _process_jobs: Next wakeup is due at 2019-03-07 17:11:05.560858-07:00 (in 19.995279 seconds)
+2019-03-07 17:10:45,571 - MainProcess:DEBUG - refresh_sensor_status: Node 0 refreshed
+2019-03-07 17:10:45,573 - MainProcess:DEBUG - refresh_sensor_status: Node 1 refreshed
+2019-03-07 17:10:45,575 - MainProcess:DEBUG - refresh_sensor_status: Node 2 refreshed
+2019-03-07 17:10:45,577 - MainProcess:DEBUG - refresh_sensor_status: Node 3 refreshed
+2019-03-07 17:10:45,581 - MainProcess:INFO - refresh_sensor_status: Node Status Set
+2019-03-07 17:10:45,581 - MainProcess:INFO - run_job: Job "Window.refresh_sensor_status (trigger: interval[0:00:20], next run at: 2019-03-07 17:11:05 MST)" executed successfully
+2019-03-07 17:10:46,870 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [[2J [0;0HNodeId:3#SoilMoisture:348#Latitude:-105.26#Longitude:40.01#RSSI:-85
+]
+2019-03-07 17:10:46,870 - MainProcess:DEBUG - read_from_port: Processed Packet String: [NodeId:3#SoilMoisture:348#Latitude:-105.26#Longitude:40.01#RSSI:-85]
+2019-03-07 17:10:46,870 - MainProcess:DEBUG - read_from_port: Packet data sent to appropriate named tuples
+2019-03-07 17:10:46,874 - MainProcess:DEBUG - read_from_port: Incoming Packet String: [
+]
+2019-03-07 17:10:46,874 - MainProcess:DEBUG - read_from_port: Processed Packet String: []
+2019-03-07 17:10:51,117 - MainProcess:DEBUG - read_from_port: Incoming Packet String: []
+2019-03-07 17:10:51,117 - MainProcess:DEBUG - read_from_port: Processed Packet String: []
+2019-03-07 17:10:51,118 - MainProcess:INFO - shutdown: Scheduler has been shut down
+2019-03-07 17:10:51,118 - MainProcess:DEBUG - _process_jobs: Looking for jobs to run
+2019-03-07 17:10:51,118 - MainProcess:DEBUG - _process_jobs: No jobs; waiting until a job is added
+2019-03-07 17:10:51,119 - MainProcess:INFO - connection_exit: Quitting GUI program
