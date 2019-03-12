@@ -282,26 +282,26 @@ static void rxDoneCallback(EasyLink_RxPacket * rxPacket, EasyLink_Status status)
             latestRxPacket.dmSensorPacket.adcValue = (rxPacket->payload[2] << 8) | rxPacket->payload[3];
    //         latestRxPacket.dmSensorPacket.batt = (rxPacket->payload[4] << 8) | rxPacket->payload[5];
             latestRxPacket.dmSensorPacket.message_num[0] = (rxPacket->payload[4] << 24) |
-                                                                       (rxPacket->payload[5] << 16) |
-                                                                       (rxPacket->payload[6] << 8) |
-                                                                        rxPacket->payload[7];
+                                                           (rxPacket->payload[5] << 16) |
+                                                           (rxPacket->payload[6] << 8) |
+                                                            rxPacket->payload[7];
             latestRxPacket.dmSensorPacket.time100MiliSec = (rxPacket->payload[8] << 24) |
                                                            (rxPacket->payload[9] << 16) |
                                                            (rxPacket->payload[10] << 8) |
                                                             rxPacket->payload[11];
             //latestRxPacket.dmSensorPacket.button = rxPacket->payload[10];
             latestRxPacket.dmSensorPacket.message_str[0] = (rxPacket->payload[12] << 24) |
-                                                                                  (rxPacket->payload[13] << 16) |
-                                                                                  (rxPacket->payload[14] << 8) |
-                                                                                   rxPacket->payload[15];
-                       latestRxPacket.dmSensorPacket.message_str[1] = (rxPacket->payload[16] << 24) |
-                                                                      (rxPacket->payload[17] << 16) |
-                                                                      (rxPacket->payload[18] << 8) |
-                                                                       rxPacket->payload[19];
-                       latestRxPacket.dmSensorPacket.message_str[2] = (rxPacket->payload[20] << 24) |
-                                                                                             (rxPacket->payload[21] << 16) |
-                                                                                             (rxPacket->payload[22] << 8) |
-                                                                                              rxPacket->payload[23];
+                                                           (rxPacket->payload[13] << 16) |
+                                                           (rxPacket->payload[14] << 8) |
+                                                            rxPacket->payload[15];
+            latestRxPacket.dmSensorPacket.message_str[1] = (rxPacket->payload[16] << 24) |
+                                                           (rxPacket->payload[17] << 16) |
+                                                           (rxPacket->payload[18] << 8) |
+                                                            rxPacket->payload[19];
+            latestRxPacket.dmSensorPacket.message_str[2] = (rxPacket->payload[20] << 24) |
+                                                           (rxPacket->payload[21] << 16) |
+                                                           (rxPacket->payload[22] << 8) |
+                                                            rxPacket->payload[23];
 
             latestRxPacket.dmSensorPacket.message_str_len = rxPacket->payload[24];
 

@@ -326,8 +326,8 @@ static void updateLcd(void) {
                 nodePointer->latestRssi);*/
 
         /* print to UART */
-        Display_printf(hDisplaySerial, 0, 0, "\033[2J \033[0;0HNodeId:0x%02x#SoilMoisture:0x%02x#Coords:%d#RSSI:%04d",
-                nodePointer->address, nodePointer->latestAdcValue, nodePointer->latest_number,
+        Display_printf(hDisplaySerial, 0, 0, "\033[2J\033[HNodeId:%d#SoilMoisture:%d#Latitude:%0.2f#Longitude:%0.2f#RSSI:%d\n",
+                nodePointer->address, nodePointer->latestAdcValue, nodePointer->latest_number, nodePointer->latest_number,
                 nodePointer->latestRssi);
 
         nodePointer++;
