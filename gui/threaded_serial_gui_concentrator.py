@@ -46,8 +46,8 @@ class Window(Frame):
 			logging.critical("Failed to connect to %s at %d baud", self.port, self.baud)
 			sys.exit()
 
-		self.latitude = -105.260000
-		self.longitude = 40.01
+		self.latitude = -105.261234
+		self.longitude = 40.011234
 		self.rssi_min = -103
 
 		# start scheduler for background tasks (i.e. refresh)
@@ -216,37 +216,42 @@ class Window(Frame):
 				chr(27) + "8" + chr(27) + "7" + chr(27) + "[10r" + chr(27) + "[1;1H" + chr(27) + "[2K" + chr(
 					27) + "[2J " + chr(27) + "[0;0H")
 			self.reading = self.reading.rstrip('\n')
-			self.global_data = str(self.reading)
-			logging.debug("Processed Packet String: [%s]", self.global_data)
+			self.processed_data = str(self.reading)
+			logging.debug("Processed Packet String: [%s]", self.processed_data)
+
 			try:
 				# ignore newline lines
-				if str(self.global_data).isspace():
+				if str(self.processed_data).isspace():
 					pass
 				else:
 					# send serial output packets to serial output frame
-					self.serialout.configure(text=self.global_data)
+					self.serialout.configure(text=self.processed_data)
 					# split packet into variables
-					self.global_data = self.global_data.split('#')
+					self.processed_data = self.processed_data.split('#')
+
 					# send packet data to appropriate named tuples
-					if self.global_data[0][7:] == '0':
-						Nodes.node0 = Nodes.node0._replace(nodeid=self.global_data[0][7:], rssi=self.global_data[4][5:],
-														   lat=self.global_data[2][9:],
-														   lng=self.global_data[3][10:], soil=self.global_data[1][13:])
-					if self.global_data[0][7:] == '1':
-						Nodes.node1 = Nodes.node1._replace(nodeid=self.global_data[0][7:], rssi=self.global_data[4][5:],
-														   lat=self.global_data[2][9:],
-														   lng=self.global_data[3][10:], soil=self.global_data[1][13:])
-					if self.global_data[0][7:] == '2':
-						Nodes.node2 = Nodes.node2._replace(nodeid=self.global_data[0][7:], rssi=self.global_data[4][5:],
-														   lat=self.global_data[2][9:],
-														   lng=self.global_data[3][10:], soil=self.global_data[1][13:])
-					if self.global_data[0][7:] == '3':
-						Nodes.node3 = Nodes.node3._replace(nodeid=self.global_data[0][7:], rssi=self.global_data[4][5:],
-														   lat=self.global_data[2][9:],
-														   lng=self.global_data[3][10:], soil=self.global_data[1][13:])
+					if int(self.processed_data[0][7:]) == 10:
+						Nodes.node0 = Nodes.node0._replace(nodeid=self.processed_data[0][7:], rssi=self.processed_data[4][5:],
+														   lat=self.processed_data[2][9:],
+														   lng=self.processed_data[3][10:], soil=self.processed_data[1][13:])
+					if int(self.processed_data[0][7:]) == 11:
+						Nodes.node1 = Nodes.node1._replace(nodeid=self.processed_data[0][7:], rssi=self.processed_data[4][5:],
+														   lat=self.processed_data[2][9:],
+														   lng=self.processed_data[3][10:], soil=self.processed_data[1][13:])
+					if int(self.processed_data[0][7:]) == 12:
+						Nodes.node2 = Nodes.node2._replace(nodeid=self.processed_data[0][7:], rssi=self.processed_data[4][5:],
+														   lat=self.processed_data[2][9:],
+														   lng=self.processed_data[3][10:], soil=self.processed_data[1][13:])
+					if int(self.processed_data[0][7:]) == 13:
+						Nodes.node3 = Nodes.node3._replace(nodeid=self.processed_data[0][7:], rssi=self.processed_data[4][5:],
+														   lat=self.processed_data[2][9:],
+														   lng=self.processed_data[3][10:], soil=self.processed_data[1][13:])
 					logging.debug("Packet data sent to appropriate named tuples")
 			except IndexError:
 				logging.error("Index Error in filling packet named tuples with packet strings")
+				pass
+			except ValueError:
+				logging.error("Value Error in filling packet named tuples with packet strings")
 				pass
 
 	def refresh_sensor_status(self):

@@ -23,10 +23,10 @@ void node_write(int nodeid, int rssi, float lat, float lng, int soil){
   Serial.print(soil);
   Serial.write("#");
   Serial.write("Latitude:");
-  Serial.print(lat);
+  Serial.write("-105.261234");
   Serial.write("#");
   Serial.write("Longitude:");
-  Serial.print(lng);
+  Serial.write("40.011234");
   Serial.write("#");
   Serial.write("RSSI:");
   Serial.print(rssi);
@@ -36,37 +36,37 @@ void node_write(int nodeid, int rssi, float lat, float lng, int soil){
 }
 
 void node0(){
- nodeid = 0x00; // node id
+ nodeid = 0x10; // node id
  rssi = random(-150, 0);  // rssi can be from noise floor to 0
- lat = -105.26; // DLC building
- lng = 40.01; // DLC building
+ lat = -105.271234; // DLC building
+ lng = 40.011234; // DLC building
  soil = analogRead(analogPin); // percentage from 0 to 4095
  node_write(nodeid, rssi, lat, lng, soil);
 }
 
 void node1(){
- nodeid = 0x01; // node id
+ nodeid = 0x11; // node id
  rssi = random(-150, 0);  // rssi can be from noise floor to 0
- lat = -105.26; // DLC building
- lng = 40.01; // DLC building
+ lat = -105.261234; // DLC building
+ lng = 40.011234; // DLC building
  soil = analogRead(analogPin); // percentage from 0 to 100
  node_write(nodeid, rssi, lat, lng, soil);
 }
 
 void node2(){
- nodeid = 0x02; // node id
+ nodeid = 0x12; // node id
  rssi = random(-150, 0);  // rssi can be from noise floor to 0
- lat = -105.26; // DLC building
- lng = 40.01; // DLC building
+ lat = -105.261234; // DLC building
+ lng = 40.011234; // DLC building
  soil = analogRead(analogPin); // percentage from 0 to 100
  node_write(nodeid, rssi, lat, lng, soil);
 }
 
 void node3(){
- nodeid = 0x03; // node id
+ nodeid = 0x13; // node id
  rssi = random(-150, 0);  // rssi can be from noise floor to 0
- lat = -105.26; // DLC building
- lng = 40.01; // DLC building
+ lat = -105.261234; // DLC building
+ lng = 40.011234; // DLC building
  soil = analogRead(analogPin); // percentage from 0 to 100
  node_write(nodeid, rssi, lat, lng, soil);
 }
